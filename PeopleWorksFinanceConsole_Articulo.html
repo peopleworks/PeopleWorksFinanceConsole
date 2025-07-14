@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PeopleWorks Finance Console</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 leading-relaxed tracking-wide flex flex-col">
+    <header class="bg-white shadow">
+        <div class="max-w-6xl mx-auto py-6 px-4">
+            <h1 class="text-3xl font-bold text-blue-700">PeopleWorks Finance Console</h1>
+            <p class="text-lg text-gray-600">Extracción automatizada de datos financieros para el análisis con IA</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <img src="logo.png" alt="Logo" class="w-full mb-6 rounded shadow">
+
+        <h2 class="text-2xl font-bold text-blue-600 mb-4">¿Qué es PeopleWorks Finance Console?</h2>
+        <p class="mb-6">
+            Es una herramienta de consola desarrollada en C# y .NET 9 que permite la descarga estructurada de datos del sistema financiero de la República Dominicana. Integra datos de captaciones, indicadores, cartera de crédito y más, todo consumido desde el API oficial de la Superintendencia de Bancos.
+        </p>
+
+        <h2 class="text-2xl font-bold text-blue-600 mb-4">¿Cómo funciona?</h2>
+        <pre class="bg-gray-200 p-4 rounded overflow-x-auto text-sm">
+```mermaid
+flowchart TD
+    A[Usuario ejecuta consola] --> B[Consulta API SB]
+    B --> C[Descarga datos financieros]
+    C --> D[Inserta datos en SQL Server]
+    D --> E[Consulta desde PeopleWorks GPT]
+```
+        </pre>
+
+        <h2 class="text-2xl font-bold text-blue-600 mt-8 mb-4">Ventajas clave</h2>
+        <ul class="list-disc list-inside space-y-2 mb-6">
+            <li>Automatiza la recopilación mensual de datos financieros.</li>
+            <li>Compatible con SQL Server y Power BI.</li>
+            <li>Diseñada para integrarse perfectamente con <strong>PeopleWorks GPT</strong>.</li>
+            <li>Permite análisis comparativos entre años, entidades e indicadores.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-blue-600 mt-8 mb-4">¿Cómo se usa?</h2>
+        <p class="mb-4">Puedes ejecutar el proyecto desde la línea de comandos con múltiples parámetros:</p>
+        <pre class="bg-gray-100 p-4 rounded text-sm">
+PeopleWorksFinanceConsole.exe endpoint=captaciones inicio=2024-01 fin=2024-12 guardarbd=true
+        </pre>
+
+        <p class="mb-4">Ejemplo en script <code>.bat</code> para automatización mensual:</p>
+        <pre class="bg-gray-100 p-4 rounded text-sm">
+@echo off
+set EXE=PeopleWorksFinanceConsole.exe
+set INICIO=2024-01
+set FIN=2024-01
+%EXE% endpoint=captaciones inicio=%INICIO% fin=%FIN% guardarbd=true
+        </pre>
+
+        <h2 class="text-2xl font-bold text-blue-600 mt-8 mb-4">Fragmento de código</h2>
+        <p class="mb-4">Ejemplo de cómo se realiza la inserción a base de datos:</p>
+        <pre class="bg-gray-800 text-white p-4 rounded text-sm overflow-x-auto">
+public void InsertCaptaciones(List<Captacion> data)
+{
+    using var connection = new SqlConnection(_connectionString);
+    connection.Open();
+    foreach (var item in data)
+    {
+        var command = new SqlCommand("INSERT INTO Captacion (...) VALUES (...)", connection);
+        // Agrega parámetros
+        command.ExecuteNonQuery();
+    }
+}
+        </pre>
+
+        <h2 class="text-2xl font-bold text-blue-600 mt-8 mb-4">Ejemplos de preguntas en lenguaje natural</h2>
+        <ul class="list-disc list-inside space-y-2 mb-6">
+            <li>¿Cuál fue la captación total por Bancos Múltiples en enero 2024?</li>
+            <li>¿Qué entidad pública presentó mayor deuda promedio?</li>
+            <li>¿Cómo evolucionó el indicador de liquidez en 2024?</li>
+            <li>Comparar la cartera por regiones en 2024 y 2025.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-blue-600 mt-8 mb-4">Repositorio en GitHub</h2>
+        <p class="mb-6">
+            El código fuente está disponible públicamente. ¡Dale una estrella y colabora!
+            <br>
+            🔗 <a href="https://github.com/peopleworks/PeopleWorksFinanceConsole" class="text-blue-600 underline">https://github.com/peopleworks/PeopleWorksFinanceConsole</a>
+        </p>
+
+        <h2 class="text-xl font-bold text-gray-700 mt-12 mb-2">Equipo</h2>
+        <p class="text-gray-700 mb-8">Desarrollado con ❤️ por el equipo de PeopleWorks: Pedro Hernández y su copiloto de IA, Jack.</p>
+    </main>
+
+    <footer class="bg-white border-t mt-auto py-4 text-center text-sm text-gray-500">
+        © 2025 PeopleWorks GPT. Contacto: <a href="mailto:support@peopleworksgpt.com" class="text-blue-600">support@peopleworksgpt.com</a>
+    </footer>
+</body>
+</html>
